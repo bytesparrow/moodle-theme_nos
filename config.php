@@ -29,7 +29,7 @@ $THEME->name = 'nos';
 ###### @ https://docs.moodle.org/dev/Creating_a_theme_based_on_boost 
 
 $THEME->doctype = 'html5';
-$THEME->parents = ['boost_union','h5peventsystem', 'contentmodifier'];
+$THEME->parents = ['boost','boost_union','h5peventsystem', 'contentmodifier'];
 $THEME->sheets = ['custom'];
 $THEME->supportscssoptimisation = false;
 $THEME->yuicssmodules = [];
