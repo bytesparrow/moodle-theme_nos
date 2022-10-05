@@ -1,0 +1,21 @@
+{
+    "name": "null/nos",
+    "description": "A theme for ml.",
+    "type": "moodle-theme",
+    "keywords": ["theme", "moodle"],
+    "license": "GPLv3",
+    "version": "dev-master",
+    "authors": [
+        {
+            "name": "Bernhard Strehl"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "composer/installers": "~1.0",
+        "null/contentmodifier": "dev-master",
+        "null/h5peventsystem": "dev-master"
+    }
+    
+}
+
