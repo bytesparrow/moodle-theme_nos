@@ -13,6 +13,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "composer/installers": "~1.0",
+        "moodle-an-hochschulen/boost_union": "dev-master",
         "null/contentmodifier": "dev-master",
         "null/h5peventsystem": "dev-master"
     }
