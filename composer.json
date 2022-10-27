@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
-        "composer/installers": "~1.0",
+        "composer/installers": "~2.2",
+        "moodle/moodle": "v4.*",
         "moodle-an-hochschulen/boost_union": "dev-master",
         "null/contentmodifier": "dev-master",
         "null/h5peventsystem": "dev-master"
