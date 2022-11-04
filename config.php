@@ -36,7 +36,7 @@ $THEME->yuicssmodules = [];
 $THEME->enable_dock = false;
 $THEME->editor_sheets = [];
 
-$THEME->rendererfactory = 'theme_overridden_renderer_factory';
+$THEME->rendererfactory = 'theme_extended_overridden_renderer_factory';
 $THEME->requiredblocks = ''; #wichtig, sonst geht h5p nicht
 $THEME->usefallback = true;
 $THEME->haseditswitch = true;
