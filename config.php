@@ -22,14 +22,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
 $THEME->name = 'nos';
 
 
-######  See section "Duplicate the settings from Boost"
-###### @ https://docs.moodle.org/dev/Creating_a_theme_based_on_boost 
+// See section "Duplicate the settings from Boost"
+// See: https://docs.moodle.org/dev/Creating_a_theme_based_on_boost !
 
 $THEME->doctype = 'html5';
-$THEME->parents = ['boost','boost_union','h5peventsystem', 'contentmodifier'];
+$THEME->parents = ['boost', 'boost_union', 'h5peventsystem', 'contentmodifier'];
 $THEME->sheets = ['custom'];
 $THEME->supportscssoptimisation = false;
 $THEME->yuicssmodules = [];
@@ -37,7 +38,7 @@ $THEME->enable_dock = false;
 $THEME->editor_sheets = [];
 
 $THEME->rendererfactory = 'theme_extended_overridden_renderer_factory';
-$THEME->requiredblocks = ''; #wichtig, sonst geht h5p nicht
+$THEME->requiredblocks = ''; // ...wichtig, sonst geht h5p nicht
 $THEME->usefallback = true;
 $THEME->haseditswitch = true;
 // By default, all boost theme do not need their titles displayed.

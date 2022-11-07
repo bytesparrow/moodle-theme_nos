@@ -20,18 +20,17 @@ use moodle_url;
 use html_writer;
 use get_string;
 
-defined('MOODLE_INTERNAL') || die;
 
 /**
- * Renderers to align Moodle's HTML with that expected by Bootstrap
+ * Adds a dummy content to main. Used some day later...
  *
  * @package    theme_nos
  * @copyright   2022 Bernhard Strehl <moodle@software.bernhard-strehl.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class core_modifier extends \core_modifier_base {
-    public function get_content_to_attach_to_main()
-    {
+
+    public function get_content_to_attach_to_main() {
         return '<span style="background:orange">Injected aus Theme "nos"!!</span><hr>';
     }
 }

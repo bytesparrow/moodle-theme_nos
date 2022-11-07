@@ -24,17 +24,14 @@
 namespace theme_nos\output;
 
 
-defined('MOODLE_INTERNAL') || die;
-
 
 /**
  * extends theme_contentmodifier\output\core_renderer
- * 
+ *
  *
  * @package    theme_nos
  * @copyright   2022 Bernhard Strehl <moodle@software.bernhard-strehl.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class core_renderer extends \theme_contentmodifier\output\core_renderer
-{ 
+class core_renderer extends \theme_contentmodifier\output\core_renderer {
 }

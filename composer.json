@@ -2,9 +2,13 @@
     "name": "null/nos",
     "description": "A theme for ml.",
     "type": "moodle-theme",
-    "keywords": ["theme", "moodle"],
+    "keywords": [
+        "theme",
+        "moodle"
+    ],
     "license": "GPLv3",
-    "version": "dev-master",
+    "version": "v1.0-alpha",
+    "stability": "alpha",
     "authors": [
         {
             "name": "Bernhard Strehl"
@@ -17,6 +21,4 @@
         "null/contentmodifier": "dev-master",
         "null/h5peventsystem": "dev-master"
     }
-    
 }
-
