@@ -7,7 +7,7 @@
         "moodle"
     ],
     "license": "GPLv3",
-    "version": "v1.0-alpha",
+    "version": "v1.0-alpha1",
     "stability": "alpha",
     "authors": [
         {
@@ -18,7 +18,7 @@
         "composer/installers": "~2.2",
         "moodle/moodle": "v4.*",
         "moodle-an-hochschulen/boost_union": "dev-master",
-        "null/contentmodifier": "dev-master",
-        "null/h5peventsystem": "dev-master"
+        "null/contentmodifier": "v1.*",
+        "null/h5peventsystem": "v1.*"
     }
 }
