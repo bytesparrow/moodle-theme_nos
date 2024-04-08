@@ -1,5 +1,5 @@
 {
-    "name": "null/nos",
+    "name": "bytesparrow/nos",
     "description": "A theme for ml.",
     "type": "moodle-theme",
     "keywords": [
@@ -7,11 +7,14 @@
         "moodle"
     ],
     "license": "GPLv3",
-    "version": "v1.0-alpha1",
+    "version": "v1.0-alpha2",
     "stability": "alpha",
     "authors": [
         {
-            "name": "Bernhard Strehl"
+            "name": "Bernhard Strehl",
+            "email": "moodle@bytesparrow.de",
+            "homepage": "https://www.bytesparrow.de",
+            "role": "Developer"
         }
     ],
     "require": {
