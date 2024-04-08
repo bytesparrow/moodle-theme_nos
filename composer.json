@@ -20,7 +20,7 @@
     "require": {
         "composer/installers": "~2.2",
         "moodle/moodle": "v4.*",
-        "moodle-an-hochschulen/boost_union": "dev-master",
+        "moodle-an-hochschulen/boost_union": "v4.3.*",
         "null/contentmodifier": "v1.*",
         "null/h5peventsystem": "v1.*"
     }
