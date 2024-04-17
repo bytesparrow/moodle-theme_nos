@@ -31,6 +31,6 @@ use get_string;
 class core_modifier extends \core_modifier_base {
 
     public function get_content_to_attach_to_main() {
-        return '<span style="background:orange">Injected aus Theme "nos"!!</span><hr>';
+        return '<!--<span style="background:orange">Injected aus Theme "nos"!!</span><hr>-->';
     }
 }

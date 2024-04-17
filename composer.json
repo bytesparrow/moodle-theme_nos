@@ -7,7 +7,7 @@
         "moodle"
     ],
     "license": "GPLv3",
-    "version": "v1.0-alpha2",
+    "version": "v1.0-alpha3",
     "stability": "alpha",
     "authors": [
         {
@@ -20,7 +20,6 @@
     "require": {
         "composer/installers": "~2.2",
         "moodle/moodle": "v4.*",
-        "moodle-an-hochschulen/boost_union": "v4.3.*",
         "bytesparrow/contentmodifier": "v1.*",
         "bytesparrow/h5peventsystem": "v1.*"
     }

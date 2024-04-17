@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,12 +16,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 defined('MOODLE_INTERNAL') || die;
-
-$plugin->version   = 2022092900;
-$plugin->requires  = 2022041900;
+$plugin->version = 2024041700;
+$plugin->requires = 2022112800;
+$plugin->release = 2024041700;
+$plugin->supported = [400, 403];
 $plugin->component = 'theme_nos';
-$plugin->dependencies = ['theme_boost' => 2020060900,
-    'theme_boost_union' => 2020060900,
-    'theme_h5peventsystem' => 2022092900,
-    'theme_contentmodifier' => 2022092900];
+$plugin->dependencies = ['theme_boost' => 2023042400,
+  'theme_h5peventsystem' => 2024041700,
+  'theme_contentmodifier' => 2024041700];
 $plugin->maturity = MATURITY_ALPHA;

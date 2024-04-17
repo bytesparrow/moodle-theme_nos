@@ -30,7 +30,7 @@ $THEME->name = 'nos';
 // See: https://docs.moodle.org/dev/Creating_a_theme_based_on_boost !
 
 $THEME->doctype = 'html5';
-$THEME->parents = ['boost', 'boost_union', 'h5peventsystem', 'contentmodifier'];
+$THEME->parents = ['boost', 'h5peventsystem', 'contentmodifier'];
 $THEME->sheets = ['custom'];
 $THEME->supportscssoptimisation = false;
 $THEME->yuicssmodules = [];
@@ -45,3 +45,8 @@ $THEME->haseditswitch = true;
 $THEME->activityheaderconfig = [
     'notitle' => true
 ];
+// This is the function that returns the SCSS source for the main file in our theme. We override the boost version because          
+// we want to allow presets uploaded to our own theme file area to be selected in the preset list.                                  
+$THEME->scss = function($theme) {
+  return theme_nos_get_main_scss_content($theme);
+};
