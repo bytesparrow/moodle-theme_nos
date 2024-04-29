@@ -34,7 +34,6 @@ $string['generalsettings'] = 'Allgemeine Einstellungen';
 $string['loginbackgroundimage'] = 'Hintergrundbild für die Anmeldeseite';
 $string['loginbackgroundimage_desc'] = 'Das Bild wird als Hintergrundbild auf der Anmeldeseite angezeigt.';
 $string['nobootswatch'] = 'Keine';
-$string['pluginname'] = 'Boost';
 $string['preset'] = 'Vorlagendatei';
 $string['preset_desc'] = 'Wählen Sie eine Vorlagendatei, um das Aussehen des Designs zu festzulegen.';
 $string['presetfiles'] = 'Zusätzliche Vorlagendateien';
