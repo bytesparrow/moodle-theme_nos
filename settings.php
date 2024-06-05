@@ -1,79 +1,127 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-// Every file should have GPL and copyright in the header - we skip it in tutorials but you should not skip it for real.
-// This line protects the file from being accessed by a URL directly.                                                               
+/**
+ * Theme NOS - Settings file
+ *
+ * @package    theme_nos
+ * @copyright 2024 Bernhard Strehl <moodle@bytesparrow.de>
+ *            based on  2023 Daniel Poggenpohl <daniel.poggenpohl@fernuni-hagen.de> and Alexander Bias <bias@alexanderbias.de>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 defined('MOODLE_INTERNAL') || die();
 
-// This is used for performance, we don't need to know about these settings on every page in Moodle, only when                      
-// we are looking at the admin settings pages.                                                                                      
-if ($ADMIN->fulltree) {
-  // Boost provides a nice setting page which splits settings onto separate tabs. We want to use it here.                         
-  $settings = new theme_boost_admin_settingspage_tabs('themesettingnos', get_string('configtitle', 'theme_nos'));
+if ($hassiteconfig || has_capability('theme/boost_union:configure', context_system::instance())) {
 
-  // Each page is a tab - the first is the "General" tab.                                                                         
-  $page = new admin_settingpage('theme_nos_general', get_string('generalsettings', 'theme_nos'));
+    // How this file works:
+    // Boost Union's settings are divided into multiple settings pages which resides in its own settings category.
+    // You will understand it as soon as you look at /theme/boost_union/settings.php.
+    // This settings file here is built in a way that it adds another settings page to this existing settings
+    // category. You can add all child-theme-specific settings to this settings page here.
 
-  // Replicate the preset setting from boost.                                                                                     
-  $name = 'theme_nos/preset';
-  $title = get_string('preset', 'theme_nos');
-  $description = get_string('preset_desc', 'theme_nos');
-  $default = 'default.scss';
-  // We list files in our own file area to add to the drop down. We will provide our own function to                              
-  // load all the presets from the correct paths.                                                                                 
-  $context = context_system::instance();
-  $fs = get_file_storage();
-  $files = $fs->get_area_files($context->id, 'theme_nos', 'preset', 0, 'itemid, filepath, filename', false);
-  $choices = [];
-  foreach ($files as $file) {
-    $choices[$file->get_filename()] = $file->get_filename();
-  }
-  // These are the built in presets from Boost.                                                                                   
-  $choices['default.scss'] = 'default.scss';
-  $choices['plain.scss'] = 'plain.scss';
+    // However, there is still the $settings variable which is expected by Moodle core to be filled with the theme
+    // settings and which is automatically linked from the theme selector page.
+    // To avoid that there appears a broken "NOS" settings page, we redirect the user to a settings
+    // overview page if he opens this page.
+    $mainsettingspageurl = new moodle_url('/admin/settings.php', ['section' => 'themesettingnos']);
+    if ($ADMIN->fulltree && $PAGE->has_set_url() && $PAGE->url->compare($mainsettingspageurl)) {
+        redirect(new moodle_url('/admin/settings.php', ['section' => 'theme_nos']));
+    }
 
+    // Create empty settings page structure to make the site administration work on non-admin pages.
+    if (!$ADMIN->fulltree) {
+        // Create NOS settings page
+        // (and allow users with the theme/boost_union:configure capability to access it).
+        $tab = new admin_settingpage('theme_nos',
+                get_string('configtitle', 'theme_nos', null, true),
+                'theme/boost_union:configure');
+        $ADMIN->add('theme_boost_union', $tab);
+    }
 
-  $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
-  $setting->set_updatedcallback('theme_reset_all_caches');
-  $page->add($setting);
+    // Create full settings page structure.
+    // @codingStandardsIgnoreLine
+    else if ($ADMIN->fulltree) {
 
-  // Preset files setting.                                                                                                        
-  $name = 'theme_nos/presetfiles';
-  $title = get_string('presetfiles', 'theme_nos');
-  $description = get_string('presetfiles_desc', 'theme_nos');
+        // Require the necessary libraries.
+        require_once($CFG->dirroot . '/theme/boost_union/lib.php');
+        require_once($CFG->dirroot . '/theme/boost_union/locallib.php');
+        require_once($CFG->dirroot . '/theme/nos/lib.php');
+        require_once($CFG->dirroot . '/theme/nos/locallib.php');
 
-  $setting = new admin_setting_configstoredfile($name, $title, $description, 'preset', 0,
-    array('maxfiles' => 20, 'accepted_types' => array('.scss')));
-  $page->add($setting);
-
-
-  // Variable $brand-color.                                                                                                       
-  // We use an empty default value because the default colour should come from the preset.                                        
-  $name = 'theme_nos/brandcolor';
-  $title = get_string('brandcolor', 'theme_nos');
-  $description = get_string('brandcolor_desc', 'theme_nos');
-  $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
-  $setting->set_updatedcallback('theme_reset_all_caches');
-  $page->add($setting);
-
-  // Must add the page after definiting all the settings!                                                                         
-  $settings->add($page);
+        // Prepare options array for select settings.
+        // Due to MDL-58376, we will use binary select settings instead of checkbox settings throughout this theme.
+        $yesnooption = [THEME_BOOST_UNION_SETTING_SELECT_YES => get_string('yes'),
+                THEME_BOOST_UNION_SETTING_SELECT_NO => get_string('no'), ];
 
 
+        // Create NOS settings page with tabs
+        // (and allow users with the theme/boost_union:configure capability to access it).
+        $page = new theme_boost_admin_settingspage_tabs('theme_nos',
+                get_string('configtitle', 'theme_nos', null, true),
+                'theme/boost_union:configure');
 
-  // Advanced settings.                                                                                                           
-  $page = new admin_settingpage('theme_nos_advanced', get_string('advancedsettings', 'theme_nos'));
 
-  // Raw SCSS to include before the content.                                                                                      
-  $setting = new admin_setting_configtextarea('theme_nos/scsspre',
-    get_string('rawscsspre', 'theme_nos'), get_string('rawscsspre_desc', 'theme_nos'), '', PARAM_RAW);
-  $setting->set_updatedcallback('theme_reset_all_caches');
-  $page->add($setting);
+        // Create general settings tab.
+        $tab = new admin_settingpage('theme_nos_general',
+                get_string('generalsettings', 'theme_boost', null, true));
 
-  // Raw SCSS to include after the content.                                                                                       
-  $setting = new admin_setting_configtextarea('theme_nos/scss', get_string('rawscss', 'theme_nos'),
-    get_string('rawscss_desc', 'theme_nos'), '', PARAM_RAW);
-  $setting->set_updatedcallback('theme_reset_all_caches');
-  $page->add($setting);
+        // Create inheritance heading.
+        $name = 'theme_nos/inheritanceheading';
+        $title = get_string('inheritanceheading', 'theme_nos', null, true);
+        $setting = new admin_setting_heading($name, $title, null);
+        $tab->add($setting);
 
-  $settings->add($page);
-}             
+        // Prepare inheritance options.
+        $inheritanceoptions = [
+                THEME_NOS_SETTING_INHERITANCE_INHERIT =>
+                        get_string('inheritanceinherit', 'theme_nos'),
+                THEME_NOS_INHERITANCE_DUPLICATE =>
+                        get_string('inheritanceduplicate', 'theme_nos'),
+        ];
+
+        // Setting: Pre SCSS inheritance setting.
+        $name = 'theme_nos/prescssinheritance';
+        $title = get_string('prescssinheritancesetting', 'theme_nos', null, true);
+        $description = get_string('prescssinheritancesetting_desc', 'theme_nos', null, true).'<br />'.
+                get_string('inheritanceoptionsexplanation', 'theme_nos', null, true);
+        $setting = new admin_setting_configselect($name, $title, $description,
+                THEME_NOS_SETTING_INHERITANCE_INHERIT, $inheritanceoptions);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $tab->add($setting);
+
+        // Setting: Extra SCSS inheritance setting.
+        $name = 'theme_nos/extrascssinheritance';
+        $title = get_string('extrascssinheritancesetting', 'theme_nos', null, true);
+        $description = get_string('extrascssinheritancesetting_desc', 'theme_nos', null, true).'<br />'.
+                get_string('inheritanceoptionsexplanation', 'theme_nos', null, true);
+        $setting = new admin_setting_configselect($name, $title, $description,
+                THEME_NOS_SETTING_INHERITANCE_INHERIT, $inheritanceoptions);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $tab->add($setting);
+
+        // Add tab to settings page.
+        $page->add($tab);
+
+        /**********************************************************
+         * EXTENSION POINT:
+         * Add your NOS settings here.
+         *********************************************************/
+
+        // Add settings page to the admin settings category.
+        $ADMIN->add('theme_boost_union', $page);
+    }
+}

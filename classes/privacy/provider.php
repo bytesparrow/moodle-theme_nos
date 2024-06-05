@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme NOS - Version file
+ * Theme NOS - Privacy provider
  *
  * @package    theme_nos
  * @copyright  2024 Bernhard Strehl <moodle@bytesparrow.de>
@@ -23,15 +23,25 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace theme_nos\privacy;
 
-$plugin->component = 'theme_nos';
-$plugin->version = 2024060501;
-$plugin->requires = 2024042200;
-$plugin->supported = [404, 404];
-$plugin->dependencies = [
-  'theme_boost_union' => 2023102038,
-  'theme_boost' => 2023042400,
-  'theme_h5peventsystem' => 2024041700,
-  'theme_contentmodifier' => 2024041700];
-$plugin->maturity = MATURITY_ALPHA;
+/**
+ * Privacy Subsystem implementing null_provider.
+ *
+ * @package    theme_nos
+ * @copyright  2024 Bernhard Strehl <moodle@bytesparrow.de>
+ *             based on  2023 Daniel Poggenpohl <daniel.poggenpohl@fernuni-hagen.de> and Alexander Bias <bias@alexanderbias.de>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return string
+     */
+    public static function get_reason(): string {
+        return 'privacy:metadata';
+    }
+}

@@ -19,7 +19,7 @@ This theme requires Moodle 4.0+
 
 ## License ##
 
-2022 Bernhard Strehl <moodle@bytesparrow.de>
+2024 Bernhard Strehl <moodle@bytesparrow.de>
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software

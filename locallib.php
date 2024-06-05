@@ -15,23 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme NOS - Version file
+ * Theme NOS - Local library
  *
  * @package    theme_nos
- * @copyright  2024 Bernhard Strehl <moodle@bytesparrow.de>
- *             based on  2023 Daniel Poggenpohl <daniel.poggenpohl@fernuni-hagen.de> and Alexander Bias <bias@alexanderbias.de>
+ * @copyright 2024 Bernhard Strehl <moodle@bytesparrow.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->component = 'theme_nos';
-$plugin->version = 2024060501;
-$plugin->requires = 2024042200;
-$plugin->supported = [404, 404];
-$plugin->dependencies = [
-  'theme_boost_union' => 2023102038,
-  'theme_boost' => 2023042400,
-  'theme_h5peventsystem' => 2024041700,
-  'theme_contentmodifier' => 2024041700];
-$plugin->maturity = MATURITY_ALPHA;
+/***************************************************************
+ * EXTENSION POINT:
+ * Add whatever NOS local functions you need here.
+ **************************************************************/

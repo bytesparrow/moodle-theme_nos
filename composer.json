@@ -1,13 +1,13 @@
 {
     "name": "bytesparrow/nos",
-    "description": "A theme for ml.",
+    "description": "NOS is a theme that allows the manipulation of Moodle's site-layout completely",
     "type": "moodle-theme",
     "keywords": [
         "theme",
         "moodle"
     ],
     "license": "GPLv3",
-    "version": "v1.0-alpha4",
+    "version": "v1.0-alpha6",
     "stability": "alpha",
     "authors": [
         {
@@ -19,7 +19,7 @@
     ],
     "require": {
         "composer/installers": "~2.2",
-        "moodle/moodle": "v4.*",
+        "moodle/moodle": "v4.4.*",
         "bytesparrow/contentmodifier": "v1.*",
         "bytesparrow/h5peventsystem": "v1.*"
     }
