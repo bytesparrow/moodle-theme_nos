@@ -44,6 +44,7 @@ $THEME->scss = function($theme) {
 $THEME->parents = ['boost_union','boost', 'h5peventsystem', 'contentmodifier'];
 $THEME->extrascsscallback = 'theme_nos_get_extra_scss';
 $THEME->prescsscallback = 'theme_nos_get_pre_scss';
+$THEME->yuicssmodules = [];
 
 // We need to duplicate the rendererfactory even if it is set to the same value as in Boost Union.
 // The theme_config::get_renderer() method needs it to be directly in the theme_config object.
