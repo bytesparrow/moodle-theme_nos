@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_nos';
-$plugin->version = 2024060502;
+$plugin->version = 2024112900;
 $plugin->requires = 2024042200;
 $plugin->supported = [404, 404];
 $plugin->dependencies = [

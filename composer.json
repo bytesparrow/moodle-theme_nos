@@ -19,7 +19,7 @@
     ],
     "require": {
         "composer/installers": "~2.2",
-        "moodle/moodle": "v4.4.*",
+        "moodle/moodle": "v4.*",
         "bytesparrow/contentmodifier": "v1.*",
         "bytesparrow/h5peventsystem": "v1.*"
     }
